@@ -1,0 +1,27 @@
+resizedImages = cell(1, 17);
+
+% Assuming you want 3 rows and 6 columns for the final image
+numRows = 3;
+numCols = 6;
+
+for i = 1:9
+    filePath = fullfile('Images', sprintf('db1_0%d.jpg', i));
+    
+    currentImage = imread(filePath);
+    resizedImage = imresize(currentImage, 0.25);
+    
+    resizedImages{i} = resizedImage;
+end
+
+% Ensure the number of images is equal to numRows * numCols
+numImages = numRows * numCols;
+resizedImages = resizedImages(1:9);
+
+% Reshape the cell array into a 3D array with numRows rows and numCols columns
+finalImage = cat(4, resizedImages{:});
+
+% Concatenate along rows and columns
+finalImage = cat(1, cat(2, finalImage(:, :, 1, :), finalImage(:, :, 2, :), finalImage(:, :, 3, :)), ...
+                   cat(2, finalImage(:, :, 4, :), finalImage(:, :, 5, :), finalImage(:, :, 6, :)));
+
+imshow(finalImage);
