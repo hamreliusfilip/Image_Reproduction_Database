@@ -5,7 +5,7 @@ numRows = 3;
 numCols = 6;
 
 % Specify the target size for resizing
-targetSize = [300, 300];  % Adjust the size as needed
+targetSize = [1000, 1000];  % Adjust the size as needed
 
 for i = 1:18
     if (i < 10)
