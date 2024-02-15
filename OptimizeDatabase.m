@@ -23,25 +23,24 @@ for i = 1:200
     B = labImage(:, :, 3);
     
     foundSimilar = false;
-    counter = 0; 
-    treshold = 8000; 
     
     if TurnOnOpt == true
         for j = 1:200 
+            
+             delta = sqrt((colorBase{j}.L(:) - L(:)).^2 + ((colorBase{j}.A(:) - A(:)).^2 + ((colorBase{j}.B(:) - B(:)).^2))); 
+             mean_delta = mean(mean(delta));
        
-            if any(abs(colorBase{j}.L(:) - L(:)) < treshold) || ...
-               any(abs(colorBase{j}.A(:) - A(:)) < treshold) || ...
-               any(abs(colorBase{j}.B(:) - B(:)) < treshold)
+            if mean_delta < 10
 
                 foundSimilar = true;
                 break; 
+                
             end 
         end 
     end
     
-    if TurnOnOpt == false || ~foundSimilar || counter < 100
+    if TurnOnOpt == false || foundSimilar == false
         colorBase{i} = struct('L', L, 'A', A, 'B', B);
-        counter = counter + 1; 
     end 
 end 
     
