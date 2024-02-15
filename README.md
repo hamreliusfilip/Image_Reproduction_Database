@@ -1,7 +1,7 @@
 # Image_Reproduction_Database
 A program to replicate a user-inputted image using a predefined database with other images. 
 
-Takes a input image of any size and form, analyzes the colorspace and replaces the pixels with famous logos to recreate the image. 
+Takes a input image of any size and form, analyzes the colorspace and replaces 25x25 pixel regions with famous logos to recreate the image. 
 
 Sample 1: 
 ![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/96d38d03-5508-4e5a-904a-2bdd68183c31)
