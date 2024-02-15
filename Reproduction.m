@@ -2,6 +2,14 @@ function [rgbImage] = Reproduction(queryImageLab)
 
 load colorBase.mat colorBase
 
+targetColors = zeros(200, 3);
+
+for q = 1:200
+    targetColors(q, 1) = median(colorBase{q}.L(:));
+    targetColors(q, 2) = median(colorBase{q}.a(:));
+    targetColors(q, 3) = median(colorBase{q}.b(:));
+end
+
 queryImageLab = im2double(queryImageLab);
 
 gridSize = 25; 
@@ -30,7 +38,7 @@ for i = 1:numRows
         % Calculate Euclidean distance for each image
         for q = 1:200
             
-            targetColor = [median(colorBase{q}.L(:)), median(colorBase{q}.a(:)), median(colorBase{q}.b(:))];
+            targetColor = targetColors(q, :);
             
             distance = norm(currentColor - targetColor);
 
