@@ -9,11 +9,15 @@ if (numRows < 1000) && (numCols < 1000)
     disp('This image will be upscaled and might issue a worse result then a larger image would'); 
 end 
 
+TurnOnOptimization = true; % Toggle true/false for database optimization
+
 queryImageRGB = imresize(queryImageRGB, [1000, 1000]);
 
 queryImageLAB = rgb2lab(queryImageRGB);
 
 CreateDatabase();
+
+OptimizeDatabase(TurnOnOptimization);
 
 imgFinal = Reproduction(queryImageLAB);
 

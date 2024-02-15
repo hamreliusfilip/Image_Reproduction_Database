@@ -6,8 +6,8 @@ targetColors = zeros(200, 3);
 
 for q = 1:200
     targetColors(q, 1) = median(colorBase{q}.L(:));
-    targetColors(q, 2) = median(colorBase{q}.a(:));
-    targetColors(q, 3) = median(colorBase{q}.b(:));
+    targetColors(q, 2) = median(colorBase{q}.A(:));
+    targetColors(q, 3) = median(colorBase{q}.B(:));
 end
 
 queryImageLab = im2double(queryImageLab);
@@ -52,10 +52,10 @@ for i = 1:numRows
         Pixel_Image = imresize(colorBase{bestMatchIndex}.L, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 1) = Pixel_Image;
         
-        Pixel_Image = imresize(colorBase{bestMatchIndex}.a, [numel(replaceRegionRows), numel(replaceRegionCols)]);
+        Pixel_Image = imresize(colorBase{bestMatchIndex}.A, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 2) = Pixel_Image;
         
-        Pixel_Image = imresize(colorBase{bestMatchIndex}.b, [numel(replaceRegionRows), numel(replaceRegionCols)]);
+        Pixel_Image = imresize(colorBase{bestMatchIndex}.B, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 3) = Pixel_Image;
 
 

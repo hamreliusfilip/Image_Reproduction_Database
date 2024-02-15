@@ -23,24 +23,5 @@ end
 
 save dataBase dataBase;
 
-%----------------------- Create color database ------------------------
-
-colorBase = cell(200, 1);
-
-for i = 1:200
-    
-    currentImage = dataBase{i};
-    
-    labImage = rgb2lab(currentImage);
-    
-    L = labImage(:, :, 1);
-    a = labImage(:, :, 2);
-    b = labImage(:, :, 3);
-    
-    colorBase{i} = struct('L', L, 'a', a, 'b', b);
-end
-
-save colorBase colorBase
-
 end
 
