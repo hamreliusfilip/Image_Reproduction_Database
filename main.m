@@ -1,6 +1,6 @@
 
 
-queryImageRGB = imread("Database_logos/32.jpg"); 
+queryImageRGB = imread("Database_logos/31.jpg"); 
 
 numRows = size(queryImageLab, 1);
 numCols = size(queryImageLab, 2);
@@ -11,13 +11,16 @@ end
 
 TurnOnOptimization = true; % Toggle true/false for database optimization
 
-queryImageRGB = imresize(queryImageRGB, [1000, 1000]);
-
+queryImageRGB = imresize(queryImageRGB, [2000, 2000]);
 queryImageLAB = rgb2lab(queryImageRGB);
+
+
 
 CreateDatabase();
 
 OptimizeDatabase(TurnOnOptimization);
+
+%OptimizeDatabase_OnQueryImage(TurnOnOptimization); 
 
 imgFinal = Reproduction(queryImageLAB);
 
@@ -29,22 +32,7 @@ subplot(1, 2, 2);
 imshow(imgFinal);
 title('Reproduction Image');
 
-load colorBase.mat colorBase
-
-numImages = numel(colorBase);
-numRows = ceil(sqrt(numImages));
-numCols = ceil(numImages / numRows);
-
-figure;
-
-for i = 1:numImages
-    subplot(numRows, numCols, i);
-
-    rgbImage = lab2rgb(cat(3, colorBase{i}.L, colorBase{i}.A, colorBase{i}.B));
-    
-    imshow(rgbImage);
-    title(['Image ' num2str(i)]);
-end
+% PlotDataBase(); % Uncomment if you want to see the database used for your image.
 
 
 

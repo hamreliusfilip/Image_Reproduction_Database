@@ -1,13 +1,11 @@
 function [] = OptimizeDatabase(TurnOnOpt)
 
-%----------------------- Create color database ------------------------
-
 load dataBase.mat dataBase
 
 colorBase = cell(200, 1);
 counter = 1; 
-treshold = 30; 
-amountOfImages = 50; 
+treshold = 0; % Treshold to check similairty on images 
+amountOfImages = 200; % Number of images in the final dataset (Max 200 images). 
 
 for i = 1:200
     colorBase{i} = struct('L', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
