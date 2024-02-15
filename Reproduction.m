@@ -2,6 +2,7 @@ function [rgbImage] = Reproduction(queryImageLab)
 
 colorBase = load('colorBase.mat'); 
 dataBase = load ('dataBase.mat'); 
+QueryColorBase = load('QueryColorBase'); 
 
 gridSize = 25; 
 numRows = size(queryImageLab, 1) / gridSize;
