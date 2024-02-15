@@ -11,7 +11,7 @@ save dataBase dataBase
 
 %------------------------- Resize database ----------------------------
 
-numImages = numel(dataBase);
+ numImages = numel(dataBase);
 
 targetSize = [50, 50];
 

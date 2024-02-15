@@ -5,6 +5,9 @@ function [] = OptimizeDatabase(TurnOnOpt)
 load dataBase.mat dataBase
 
 colorBase = cell(200, 1);
+counter = 1; 
+treshold = 30; 
+amountOfImages = 50; 
 
 for i = 1:200
     colorBase{i} = struct('L', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
@@ -30,7 +33,7 @@ for i = 1:200
              delta = sqrt((colorBase{j}.L(:) - L(:)).^2 + ((colorBase{j}.A(:) - A(:)).^2 + ((colorBase{j}.B(:) - B(:)).^2))); 
              mean_delta = mean(mean(delta));
        
-            if mean_delta < 10
+            if mean_delta < treshold
 
                 foundSimilar = true;
                 break; 
@@ -39,11 +42,36 @@ for i = 1:200
         end 
     end
     
-    if TurnOnOpt == false || foundSimilar == false
-        colorBase{i} = struct('L', L, 'A', A, 'B', B);
+    if TurnOnOpt == true && foundSimilar == false
+        if (counter <= amountOfImages) 
+            colorBase{i} = struct('L', L, 'A', A, 'B', B);
+            counter = counter + 1; 
+        end 
+    end 
+    
+    if TurnOnOpt == false 
+         colorBase{i} = struct('L', L, 'A', A, 'B', B);
     end 
 end 
-    
-save colorBase colorBase
+
+
+numImages = numel(colorBase);
+imagesToRemove = [];
+
+for i = 1:numImages
+
+    isBlack = all(colorBase{i}.L(:) == 0) && all(colorBase{i}.A(:) == 0) && all(colorBase{i}.B(:) == 0);
+
+    if isBlack
+        imagesToRemove = [imagesToRemove, i];
+    end
+end
+
+colorBase(imagesToRemove) = [];
+
+disp('Size of dataset: '); 
+disp(numel(colorBase));
+save colorBase colorBase;
+
 
 end 
