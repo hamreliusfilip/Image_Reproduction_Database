@@ -1,25 +1,20 @@
 
 
-%-------------- Choose what Image to re-create ----------------
-queryImage = imread("Database_logos/32.jpg"); % Logos 
-imshow(queryImage);
+queryImage = imread("Database_logos/32.jpg"); 
+
 
 % Re-sizing image
 queryImage = imresize(queryImage, [2000, 2000]);
 
-% Change color space from RGB to CIELAB
-queryImageLab = rgb2lab(queryImage);
+CreateDatabase();
 
-QueryColorBase = cell(1, 1);
+imgFinal = Reproduction(queryImage);
 
-% CIELAB color values 
-L_Query = sum(sum(queryImageLab(:,:,1))) 
-A_Query = sum(sum(queryImageLab(:,:,2))) 
-B_Query = sum(sum(queryImageLab(:,:,3))) 
-    
-QueryColorBase{1} = struct('L', L_Query, 'a', A_Query, 'b', B_Query);
+subplot(1,2,2); 
+imshow(queryImage);
+imshow(imgFinal);
 
-save QueryColorBase QueryColorBase
+
 
 
 

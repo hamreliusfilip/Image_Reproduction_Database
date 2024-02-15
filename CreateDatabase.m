@@ -3,7 +3,8 @@ function [] = CreateDatabase()
 dataBase = cell(200, 1);
 
 for i = 1:200
-    dataBase{i} = imread(['Database_logos/' int2str(i) '.jpg']);
+    currentImage = imread(['Database_logos/' int2str(i) '.jpg']);
+    dataBase{i} = im2double(currentImage); 
 end
 
 save dataBase dataBase

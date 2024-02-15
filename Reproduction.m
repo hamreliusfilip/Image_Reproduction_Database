@@ -1,8 +1,8 @@
 function [rgbImage] = Reproduction(queryImageLab)
 
-colorBase = load('colorBase.mat'); 
-dataBase = load ('dataBase.mat'); 
-QueryColorBase = load('QueryColorBase'); 
+load colorBase.mat colorBase
+
+queryImageLab = im2double(queryImageLab);
 
 gridSize = 25; 
 numRows = size(queryImageLab, 1) / gridSize;
@@ -33,14 +33,14 @@ for i = 1:numRows
             targetColor = [median(colorBase{q}.L(:)), median(colorBase{q}.a(:)), median(colorBase{q}.b(:))];
             
             distance = norm(currentColor - targetColor);
-            
+
             if distance < currentDiff
                 bestMatchIndex = q;
                 currentDiff = distance;
             end   
         end
 
-        % Resize image based on region size and place the small images. 
+        % Resize image based on region size and place the small image. 
         Pixel_Image = imresize(colorBase{bestMatchIndex}.L, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 1) = Pixel_Image;
         
@@ -57,4 +57,6 @@ end
 rgbImage = lab2rgb(queryImageLab); 
 
 end
+
+
 
