@@ -3,8 +3,8 @@ function [] = OptimizeDatabase(TurnOnOpt)
 load dataBase.mat dataBase
 
 colorBase = cell(200, 1);
-counter = 1; 
-treshold = 20; % Treshold to check similairty on images 
+counter = 200; 
+treshold = 1; % Treshold to check similairty on images 
 amountOfImages = 200; % Number of images in the final dataset (Max 200 images). 
 
 for i = 1:200

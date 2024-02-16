@@ -1,9 +1,9 @@
 
 
-queryImageRGB = imread("Database_logos/26.jpg"); 
+queryImageRGB = imread("Test_Images/Skriet.jpg"); 
 
-numRows = size(queryImageLab, 1);
-numCols = size(queryImageLab, 2);
+numRows = size(queryImageRGB, 1);
+numCols = size(queryImageRGB, 2);
 
 if (numRows < 1000) && (numCols < 1000)
     disp('This image will be upscaled and might issue a worse result then a larger image would'); 
@@ -11,12 +11,16 @@ end
 
 TurnOnOptimization = false; % Toggle true/false for database optimization
 
-queryImageRGB = imresize(queryImageRGB, [1000, 1000]);
+queryImageRGB = imresize(queryImageRGB, [5000, 5000]);
 queryImageLAB = rgb2lab(queryImageRGB);
 
 CreateDatabase();
 
 OptimizeDatabase(TurnOnOptimization);
+
+
+
+
 
 OptimizeDatabase_OnQueryImage(queryImageRGB); 
 

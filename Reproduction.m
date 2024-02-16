@@ -7,9 +7,9 @@ sizeDatabase = numel(colorBase);
 targetColors = zeros(200, 3);
 
 for q = 1:sizeDatabase
-    targetColors(q, 1) = median(colorBase{q}.L(:));
-    targetColors(q, 2) = median(colorBase{q}.A(:));
-    targetColors(q, 3) = median(colorBase{q}.B(:));
+    targetColors(q, 1) = mean(colorBase{q}.L(:));
+    targetColors(q, 2) = mean(colorBase{q}.A(:));
+    targetColors(q, 3) = mean(colorBase{q}.B(:));
 end
 
 queryImageLab = im2double(queryImageLab);
@@ -31,7 +31,7 @@ for i = 1:numRows
         B_Region = queryImageLab(replaceRegionRows, replaceRegionCols, 3);
         
         % Use median instead of mean
-        currentColor = [median(L_Region(:)), median(A_Region(:)), median(B_Region(:))];
+        currentColor = [mean(L_Region(:)),  mean(A_Region(:)), mean(B_Region(:))];
 
         % Varibles
         currentDiff = inf;
