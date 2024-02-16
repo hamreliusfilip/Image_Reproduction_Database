@@ -3,18 +3,24 @@ A program to replicate a user-inputted image using a predefined database with ot
 
 Takes a input image of any size and form, analyzes the colorspace and replaces 25x25 pixel regions with famous logos to recreate the image. 
 
-Sample 1: 
-![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/96d38d03-5508-4e5a-904a-2bdd68183c31)
+## Sample 1: 
+<img width="1156" alt="Skärmavbild 2024-02-16 kl  13 17 32" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/b914d5c6-6324-4d49-bffa-bf87439d2391">
 
-Sample 1 zoomed in: 
-![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/9b11e307-dc11-4d72-8013-78d913a0de88)
+## Sample 1 zoomed in: 
+<img width="1156" alt="Skärmavbild 2024-02-16 kl  13 18 03" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/d0646f85-abb7-4205-93ce-637efdc750a9">
 
-Sample 2: 
-![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/37b140f8-a3ce-40d2-9bea-2b376f731a3b)
+## Sample 2: 
+<img width="1156" alt="Skärmavbild 2024-02-16 kl  13 14 57" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/bd19dc22-74ce-4543-af64-180bf0c0646f">
 
-Sample 2 zoomed in: 
-![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/b0ee5046-15ff-4a9c-8343-d4288592ed61)
+## Sample 2 zoomed in: 
+<img width="1156" alt="Skärmavbild 2024-02-16 kl  13 15 36" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/5a8f4260-fce0-48f3-b970-9ee5c8386ef7">
 
-Database: 
+## Sample 3: 
+<img width="1064" alt="Skärmavbild 2024-02-16 kl  13 12 48" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/aa7d5252-e432-41e8-bb98-d1a03d4f9776">
+
+## Sample 3 zoomed in: 
+<img width="1064" alt="Skärmavbild 2024-02-16 kl  13 13 02" src="https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/f03384e9-913b-4da1-bf2b-0ef38e81a7c0">
+
+## Database: 
 ![image](https://github.com/hamreliusfilip/Image_Reproduction_Database/assets/91670593/732b9137-5b7c-4f37-927e-9f3c297a6bd3)
 
