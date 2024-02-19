@@ -1,22 +1,20 @@
-function [] = OptimizeDatabase(TurnOnOpt)
+function [] = OptimizeDatabase(TurnOnOpt, treshold, amountOfImages)
 
 load dataBase.mat dataBase
 
 disp('Optimizing database: option one'); 
 
-colorBase = cell(200, 1);
-counter = 200; 
-treshold = 1; % Treshold to check similairty on images 
-amountOfImages = 200; % Number of images in the final dataset (Max 200 images). 
+counter = 1; 
+colorBase = cell(amountOfImages, 1);
 
-for i = 1:200
+for i = 1:amountOfImages
     colorBase{i} = struct('L', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
                           'A', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
                           'B', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)));
 end
 
 % Add the images that differentiate enough from other images in the database
-for i = 1:200
+for i = 1:amountOfImages
     
     currentImage = dataBase{i};
     
@@ -29,7 +27,7 @@ for i = 1:200
     foundSimilar = false;
     
     if TurnOnOpt == true
-        for j = 1:200 
+        for j = 1:amountOfImages 
             
              delta = sqrt((colorBase{j}.L(:) - L(:)).^2 + ((colorBase{j}.A(:) - A(:)).^2 + ((colorBase{j}.B(:) - B(:)).^2))); 
              mean_delta = mean(mean(delta));
@@ -57,7 +55,8 @@ for i = 1:200
     end 
 end 
 
-% Remove placeholders that were not occupied.
+% Remove placeholders that were not occupied 
+% (In case the treshold were tighter than allowed images.) 
 numImages = numel(colorBase);
 imagesToRemove = [];
 

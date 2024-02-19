@@ -20,9 +20,11 @@ CreateDatabase();
 % --------------------- DATABASE OPTIMIZATION -----------------------
 
 TurnOnOptimization_One = true; % Toggle on/off -> true/false
-OptimizeDatabase(TurnOnOptimization);
+AmoundOfImages = 50; % Max images you want in the final dataset, (200 availble).
+Treshold = 55; % 3 being really similair, larger value = fewer images.
+OptimizeDatabase(TurnOnOptimization_One,Treshold,AmoundOfImages);
 
-TurnOnOptimization_Two = true; % Toggle on/off -> true/false
+TurnOnOptimization_Two = false; % Toggle on/off -> true/false
 OptimizeDatabase_OnQueryImage(queryImageRGB,TurnOnOptimization_Two); 
 
 % ------------------------- REPRODUCTION ----------------------------
@@ -43,7 +45,7 @@ title('Reproduction Image');
 % ----------------------- QUALITY & DATABASE ------------------------
 
 % Uncomment if you want to see quality measures: SNR, MSE, S-CIELAB
-Quality_Measures(queryImageRGB,imgFinal); 
+% Quality_Measures(queryImageRGB,imgFinal); 
 
 % Uncomment if you want to see the database used for your image.
 PlotDataBase(); 
