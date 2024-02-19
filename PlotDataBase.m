@@ -6,6 +6,8 @@ numImages = numel(colorBase);
 numRows = ceil(sqrt(numImages));
 numCols = ceil(numImages / numRows);
 
+disp('Plotting database used...'); 
+
 figure;
 
 for i = 1:numImages

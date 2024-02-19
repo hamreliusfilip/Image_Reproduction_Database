@@ -2,10 +2,13 @@ function [rgbImage] = Reproduction(queryImageLab)
 
 load colorBase.mat colorBase
 
+disp('Calculating reproduction image...');
+
 sizeDatabase = numel(colorBase); 
 
 targetColors = zeros(200, 3);
 
+% Target colors in all the regions
 for q = 1:sizeDatabase
     targetColors(q, 1) = mean(colorBase{q}.L(:));
     targetColors(q, 2) = mean(colorBase{q}.A(:));
@@ -30,10 +33,8 @@ for i = 1:numRows
         A_Region = queryImageLab(replaceRegionRows, replaceRegionCols, 2);
         B_Region = queryImageLab(replaceRegionRows, replaceRegionCols, 3);
         
-        % Use median instead of mean
         currentColor = [mean(L_Region(:)),  mean(A_Region(:)), mean(B_Region(:))];
 
-        % Varibles
         currentDiff = inf;
         bestMatchIndex = 1; 
         
@@ -50,7 +51,7 @@ for i = 1:numRows
             end   
         end
 
-        % Resize image based on region size and place the small image. 
+        % Resize image based on region size and place the small image by LAB channels 
         Pixel_Image = imresize(colorBase{bestMatchIndex}.L, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 1) = Pixel_Image;
         

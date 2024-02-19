@@ -2,6 +2,8 @@ function [] = OptimizeDatabase(TurnOnOpt)
 
 load dataBase.mat dataBase
 
+disp('Optimizing database: option one'); 
+
 colorBase = cell(200, 1);
 counter = 200; 
 treshold = 1; % Treshold to check similairty on images 
@@ -13,6 +15,7 @@ for i = 1:200
                           'B', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)));
 end
 
+% Add the images that differentiate enough from other images in the database
 for i = 1:200
     
     currentImage = dataBase{i};
@@ -40,6 +43,7 @@ for i = 1:200
         end 
     end
     
+    % If no similair and the option is turned on, add image
     if TurnOnOpt == true && foundSimilar == false
         if (counter <= amountOfImages) 
             colorBase{i} = struct('L', L, 'A', A, 'B', B);
@@ -47,12 +51,13 @@ for i = 1:200
         end 
     end 
     
+    % If option is turned off, always add (normal database).
     if TurnOnOpt == false 
          colorBase{i} = struct('L', L, 'A', A, 'B', B);
     end 
 end 
 
-
+% Remove placeholders that were not occupied.
 numImages = numel(colorBase);
 imagesToRemove = [];
 
@@ -70,6 +75,5 @@ colorBase(imagesToRemove) = [];
 fprintf('Size of dataset: %d\n', numel(colorBase));
 
 save colorBase colorBase;
-
 
 end 
