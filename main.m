@@ -19,9 +19,9 @@ CreateDatabase();
 
 % --------------------- DATABASE OPTIMIZATION -----------------------
 
-TurnOnOptimization_One = true; % Toggle on/off -> true/false
+TurnOnOptimization_One = false; % Toggle on/off -> true/false
 AmoundOfImages = 50; % Max images you want in the final dataset, (200 availble).
-Treshold = 55; % 3 being really similair, larger value = fewer images.
+Treshold = 3; % 3 being really similair, larger value = fewer images.
 OptimizeDatabase(TurnOnOptimization_One,Treshold,AmoundOfImages);
 
 TurnOnOptimization_Two = false; % Toggle on/off -> true/false
