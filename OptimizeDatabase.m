@@ -67,8 +67,8 @@ end
 
 colorBase(imagesToRemove) = [];
 
-disp('Size of dataset: '); 
-disp(numel(colorBase));
+fprintf('Size of dataset: %d\n', numel(colorBase));
+
 save colorBase colorBase;
 
 
