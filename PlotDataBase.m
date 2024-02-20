@@ -19,7 +19,7 @@ for i = 1:numImages
     title(['Image ' num2str(i)]);
 end
 
-
+sgtitle('Images used for the Reproduction Image');
 
 end
 

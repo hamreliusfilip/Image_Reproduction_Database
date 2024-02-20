@@ -1,7 +1,7 @@
 
 % ------------------------- QUERY IMAGE ----------------------------
 
-queryImageRGB = imread("Test_Images/Night.jpg"); 
+queryImageRGB = imread("Test_Images/girl.jpg"); 
 
 numRows = size(queryImageRGB, 1);
 numCols = size(queryImageRGB, 2);
@@ -15,13 +15,13 @@ queryImageLAB = rgb2lab(queryImageRGB);
 
 % ------------------------ INITIAL DATABASE -------------------------
 
-CreateDatabase();
+CreateDatabase();   %Contains 200 images 
 
 % --------------------- DATABASE OPTIMIZATION -----------------------
 
 TurnOnOptimization_One = false; % Toggle on/off -> true/false
 AmoundOfImages = 50; % Max images you want in the final dataset, (200 availble).
-Treshold = 3; % 3 being really similair, larger value = fewer images.
+Treshold = 20; % 3 being really similair, larger value = fewer images.
 OptimizeDatabase(TurnOnOptimization_One,Treshold,AmoundOfImages);
 
 TurnOnOptimization_Two = false; % Toggle on/off -> true/false
@@ -49,6 +49,7 @@ title('Reproduction Image');
 
 % Uncomment if you want to see the database used for your image.
 PlotDataBase(); 
+
 
 
 
