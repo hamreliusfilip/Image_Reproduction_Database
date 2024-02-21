@@ -1,7 +1,7 @@
 
 % ------------------------- QUERY IMAGE ----------------------------
 
-queryImageRGB = imread("Test_Images/Night.jpg"); 
+queryImageRGB = imread("Test_Images/Skriet.jpg"); 
 
 numRows = size(queryImageRGB, 1);
 numCols = size(queryImageRGB, 2);
@@ -10,7 +10,7 @@ if (numRows < 1000) && (numCols < 1000)
     disp('This image will be upscaled and might issue a worse result then a larger image would'); 
 end 
 
-queryImageRGB = imresize(queryImageRGB, [2000, 2000]); % Final image
+queryImageRGB = imresize(queryImageRGB, [2000, 2000]); % Final image size
 queryImageLAB = rgb2lab(queryImageRGB);
 
 % ------------------------ INITIAL DATABASE -------------------------
@@ -20,11 +20,11 @@ CreateDatabase();
 % --------------------- DATABASE OPTIMIZATION -----------------------
 
 TurnOnOptimization_One = false; % Toggle on/off -> true/false
-AmoundOfImages = 50; % Max images you want in the final dataset, (200 availble).
-Treshold = 3; % 3 being really similair, larger value = fewer images.
-OptimizeDatabase(TurnOnOptimization_One,Treshold,AmoundOfImages);
+AmountOfImages = 200; % Max images you want in the final dataset, (200 availble).
+Treshold = 1; % 3 being really similair, larger value = fewer images.
+OptimizeDatabase(TurnOnOptimization_One,Treshold,AmountOfImages);
 
-TurnOnOptimization_Two = false; % Toggle on/off -> true/false
+TurnOnOptimization_Two = true; % Toggle on/off -> true/false
 OptimizeDatabase_OnQueryImage(queryImageRGB,TurnOnOptimization_Two); 
 
 % ------------------------- REPRODUCTION ----------------------------
@@ -48,7 +48,7 @@ title('Reproduction Image');
 % Quality_Measures(queryImageRGB,imgFinal); 
 
 % Uncomment if you want to see the database used for your image.
-PlotDataBase(); 
+ PlotDataBase(); 
 
 
 

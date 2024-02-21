@@ -15,7 +15,7 @@ MSE_Value = immse(Query_Image, Final_Image);
 fprintf('Mean Squared Error between original and reproduction image: %d\n', MSE_Value);
 
 % S-CIELAB
-ppi = 132; % 15 tum, 1680 x 1050 (Macbook pro 15 inch 2019)
+ppi = 132; % 15 tum, 1680 x 1050 (Macbook pro 15 inch 2019) 
 d = 20; % 20 inches from screen
 sampPerDeg = ppi * d * tan(pi/180);
 whitepoint = [95.05, 100, 108.9]; 

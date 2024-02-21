@@ -19,7 +19,7 @@ if Turn_On == true
         end 
 
         % Indexed RGB 
-        [IND, map] = rgb2ind(QueryImage, 3);
+        [IND, map] = rgb2ind(QueryImage, 6);
         RGB = ind2rgb(IND, map);
         LAB = rgb2lab(RGB);
 
@@ -50,20 +50,29 @@ if Turn_On == true
 
         color_square = zeros(1, 1, 3); 
 
-        subplot(1, 3, 1);
+        subplot(1, 6, 1);
         color_square(:, :, :) = ind2rgb(1, map); 
         imshow(color_square);
-        title('Dominant Color 1');
 
-        subplot(1, 3, 2);
+        subplot(1, 6, 2);
         color_square(:, :, :) = ind2rgb(2, map); 
         imshow(color_square);
-        title('Dominant Color 2');
 
-        subplot(1, 3, 3);
+        subplot(1, 6, 3);
         color_square(:, :, :) = ind2rgb(3, map); 
         imshow(color_square);
-        title('Dominant Color 3');
+        
+        subplot(1, 6, 4);
+        color_square(:, :, :) = ind2rgb(4, map); 
+        imshow(color_square);
+        
+        subplot(1, 6, 5);
+        color_square(:, :, :) = ind2rgb(5, map); 
+        imshow(color_square);
+        
+        subplot(1, 6, 6);
+        color_square(:, :, :) = ind2rgb(6, map); 
+        imshow(color_square);
 
         % Modify the database according to the dominat colors in CIELAB
 
@@ -87,6 +96,25 @@ if Turn_On == true
         dominatingThreeL = dominatingThree(:,:,1); 
         dominatingThreeA = dominatingThree(:,:,2); 
         dominatingThreeB = dominatingThree(:,:,3); 
+        
+        dominatingFour = ind2rgb(4, map); 
+        dominatingFour = rgb2lab(dominatingFour); 
+        dominatingFourL = dominatingFour(:,:,1); 
+        dominatingFourA = dominatingFour(:,:,2); 
+        dominatingFourB = dominatingFour(:,:,3); 
+        
+        dominatingFive = ind2rgb(5, map); 
+        dominatingFive = rgb2lab(dominatingFive); 
+        dominatingFiveL = dominatingFive(:,:,1); 
+        dominatingFiveA = dominatingFive(:,:,2); 
+        dominatingFiveB = dominatingFive(:,:,3); 
+        
+        dominatingSix = ind2rgb(5, map); 
+        dominatingSix = rgb2lab(dominatingSix); 
+        dominatingSixL = dominatingSix(:,:,1); 
+        dominatingSixA = dominatingSix(:,:,2); 
+        dominatingSixB = dominatingSix(:,:,3); 
+
 
         counter = 0; 
         colorBaseNew = cell(200, 1);
@@ -107,12 +135,26 @@ if Turn_On == true
             deltaTwo = sqrt((colorBase{i}.L(:) - dominatingTwoL(:)).^2 + ((colorBase{i}.A(:) - dominatingTwoA(:)).^2 + ((colorBase{i}.B(:) - dominatingTwoB(:)).^2)));
             deltaThree = sqrt((colorBase{i}.L(:) - dominatingThreeL(:)).^2 + ((colorBase{i}.A(:) - dominatingThreeA(:)).^2 + ((colorBase{i}.B(:) - dominatingThreeB(:)).^2)));
 
+            deltaFour = sqrt((colorBase{i}.L(:) - dominatingFourL(:)).^2 + ((colorBase{i}.A(:) - dominatingFourA(:)).^2 + ((colorBase{i}.B(:) - dominatingFourB(:)).^2))); 
+            deltaFive = sqrt((colorBase{i}.L(:) - dominatingFiveL(:)).^2 + ((colorBase{i}.A(:) - dominatingFiveA(:)).^2 + ((colorBase{i}.B(:) - dominatingFiveB(:)).^2)));
+            deltaSix = sqrt((colorBase{i}.L(:) - dominatingSixL(:)).^2 + ((colorBase{i}.A(:) - dominatingSixA(:)).^2 + ((colorBase{i}.B(:) - dominatingSixB(:)).^2)));
+            
             mean_delta_one = mean(mean(deltaOne));
             mean_delta_two = mean(mean(deltaTwo));
             mean_delta_three = mean(mean(deltaThree));
+            
+            mean_delta_four = mean(mean(deltaFour));
+            mean_delta_five = mean(mean(deltaFive));
+            mean_delta_six = mean(mean(deltaSix));
+            
+            treshold = 30; 
 
             
-            if (mean_delta_one < 35) || (mean_delta_two < 35) || (mean_delta_three < 35)        
+            if (mean_delta_one < treshold) || (mean_delta_two < treshold) || (mean_delta_three < treshold)        
+                foundSimilar = true;        
+            end 
+            
+            if (mean_delta_four < treshold) || (mean_delta_five < treshold) || (mean_delta_six < treshold)        
                 foundSimilar = true;        
             end 
 
