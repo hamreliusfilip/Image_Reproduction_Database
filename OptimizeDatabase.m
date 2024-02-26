@@ -2,7 +2,10 @@ function [] = OptimizeDatabase(TurnOnOpt, treshold, amountOfImages)
 
 load dataBase.mat dataBase
 
-disp('Optimizing database: option one'); 
+if(TurnOnOpt == true) 
+    disp('Optimizing database: option one'); 
+end 
+
 
 counter = 1; 
 colorBase = cell(amountOfImages, 1);

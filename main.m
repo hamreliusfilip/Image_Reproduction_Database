@@ -20,9 +20,14 @@ CreateDatabase();
 
 % --------------------- DATABASE OPTIMIZATION -----------------------
 
-TurnOnOptimization_One = false; % Toggle on/off -> true/false
+
 AmountOfImages = 200; % Max images you want in the final dataset, (200 availble).
 Treshold = 0; % 3 being really similair, larger value = fewer images.
+
+% Leave amount and treshold on 200 and 0 if opt 1 is turned off. 
+% These still take effect. 
+
+TurnOnOptimization_One = false; % Toggle on/off -> true/false
 OptimizeDatabase(TurnOnOptimization_One,Treshold,AmountOfImages);
 
 TurnOnOptimization_Two = false; % Toggle on/off -> true/false
