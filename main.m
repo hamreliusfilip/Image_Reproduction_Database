@@ -1,7 +1,7 @@
 
 % ------------------------- QUERY IMAGE ----------------------------
 
-queryImageRGB = imread("Test_Images/Girl.jpg");
+queryImageRGB = imread("Test_Images/Night.jpg");
 %queryImageRGB = imread("Database_logos/39.jpg");
 
 numRows = size(queryImageRGB, 1);
@@ -39,6 +39,7 @@ OptimizeDatabase_OnQueryImage(queryImageRGB,TurnOnOptimization_Two);
 % ---------------------------- PLOTTING -----------------------------
 
 figure
+
 subplot(1, 3, 1);
 imshow(queryImageRGB);
 title('Query Image');

@@ -42,9 +42,11 @@ for i = 1:numRows
         for q = 1:sizeDatabase
             
             targetColor = targetColors(q, :);
+
+            distance = mean(sqrt((currentColor - targetColor).^2));
             
-            delta = sqrt((currentColor(1) - targetColor(1)).^2 + (currentColor(2) - targetColor(2)).^2 + (currentColor(3) - targetColor(3)).^2);
-            distance = mean(delta);
+            delta = sqrt((currentColor(:,:,1) - L(:)).^2 + ((colorBase{j}.A(:) - A(:)).^2 + ((colorBase{j}.B(:) - B(:)).^2))); 
+            distance = mean(mean(delta));
 
             if distance < currentDiff
                 bestMatchIndex = q;

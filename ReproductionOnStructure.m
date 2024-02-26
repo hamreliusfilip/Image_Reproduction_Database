@@ -45,7 +45,9 @@ for i = 1:numRows
         % Calculate Euclidean distance for each image
         for q = 1:200
             targetColor = targetColors(q, :);
-            distance = norm(currentColor - targetColor);
+
+            delta = sqrt((currentColor(1) - targetColor(1)).^2 + (currentColor(2) - targetColor(2)).^2 + (currentColor(3) - targetColor(3)).^2);
+            distance = mean(delta);
 
             if distance < 20
                 bestMatchIndices{counter} = q;
