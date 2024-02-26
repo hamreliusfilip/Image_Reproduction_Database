@@ -11,7 +11,7 @@ save dataBase dataBase
 
 numImages = numel(dataBase);
 
-targetSize = [25, 25];
+targetSize = [50, 50];
 
 for i = 1:numImages
     currentImage = dataBase{i};
@@ -22,4 +22,3 @@ end
 save dataBase dataBase;
 
 end
-

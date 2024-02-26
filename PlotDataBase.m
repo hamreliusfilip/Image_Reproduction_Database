@@ -4,7 +4,7 @@ load colorBase.mat colorBase
 
 numImages = numel(colorBase);
 numRows = ceil(sqrt(numImages));
-numCols = 10;
+numCols = ceil(numImages / numRows);
 
 disp('Plotting database used...'); 
 

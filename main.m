@@ -1,7 +1,7 @@
 
 % ------------------------- QUERY IMAGE ----------------------------
 
-queryImageRGB = imread("Test_Images/Night.jpg");
+queryImageRGB = imread("Test_Images/Skriet.jpg");
 %queryImageRGB = imread("Database_logos/39.jpg");
 
 numRows = size(queryImageRGB, 1);
@@ -34,31 +34,31 @@ OptimizeDatabase_OnQueryImage(queryImageRGB,TurnOnOptimization_Two);
     imgFinalColor = Reproduction(queryImageLAB);
 
 % Reproduction on structure with SSIM and color in CIELAB 
-    imgFinalStructure = ReproductionOnStructure(queryImageLAB,queryImageRGB); 
+    %imgFinalStructure = ReproductionOnStructure(queryImageLAB,queryImageRGB); 
 
 % ---------------------------- PLOTTING -----------------------------
 
 figure
 
-subplot(1, 3, 1);
+subplot(1, 2, 1);
 imshow(queryImageRGB);
 title('Query Image');
 
-subplot(1, 3, 2);
+subplot(1, 2, 2);
 imshow(imgFinalColor);
 title('Reproduction Image on colorspace');
 
-subplot(1, 3, 3);
-imshow(imgFinalStructure);
-title('Reproduction Image on structure');
+%subplot(1, 2, 2);
+%imshow(imgFinalStructure);
+%title('Reproduction Image on structure');
 
 % ----------------------- QUALITY & DATABASE ------------------------
 
 % Uncomment if you want to see quality measures: SNR, MSE, S-CIELAB
-    % Quality_Measures(queryImageRGB,imgFinal); 
+    Quality_Measures(queryImageRGB,imgFinalColor); 
 
 % Uncomment if you want to see the database used for your image.
-    % PlotDataBase(); 
+    PlotDataBase(); 
 
 
 
