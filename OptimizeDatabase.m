@@ -4,16 +4,18 @@ load dataBase.mat dataBase
 
 if TurnOnOpt == true
     disp('Optimizing database: option one'); 
+    
+    counter = 1; 
+    colorBase = cell(amountOfImages, 1);
+
+    for i = 1:amountOfImages
+        colorBase{i} = struct('L', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
+                              'A', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
+                              'B', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)));
+    end
 end
 
-counter = 1; 
-colorBase = cell(amountOfImages, 1);
 
-for i = 1:amountOfImages
-    colorBase{i} = struct('L', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
-                          'A', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
-                          'B', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)));
-end
 
 % Add the images that differentiate enough from other images in the database
 for i = 1:amountOfImages

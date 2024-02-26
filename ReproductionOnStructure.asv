@@ -1,13 +1,13 @@
-function [rgbImage] = ReproductionOnStructure(queryImageLab,QueyImageRGB)
+function [rgbImage] = ReproductionOnStructure(queryImageLab)
 
 load colorBase.mat colorBase
 load dataBase.mat dataBase
 
-disp('Calculating reproduction image on structure...');
+disp('Calculating reproduction image...');
 
 sizeDatabase = numel(colorBase); 
 
-% ----------------- Colors in LAB for all the regions ------------------
+% ---------------- Colors in LAB for all the regions ----------------
 
 targetColors = zeros(200, 3);
 
@@ -39,73 +39,72 @@ for i = 1:numRows
         
         currentColor = [mean(L_Region(:)),  mean(A_Region(:)), mean(B_Region(:))];
 
-        bestMatchIndices = [];
+        bestMatchIndices = zeros(50,1);
         counter = 1;
 
         % Calculate Euclidean distance for each image
-        for q = 1:200
+        for q = 1:sizeDatabase
             targetColor = targetColors(q, :);
             distance = norm(currentColor - targetColor);
 
-            if distance < 20
-                bestMatchIndices{counter} = q;
+            if 30 < distance
+                bestMatchIndices(counter) = q;
                 counter = counter + 1; 
             end   
-            
         end
-        
+
         % Retrieve the corresponding elements from dataBase
         bestMatches = []; 
         
-        for v = 1:length(bestMatchIndices)
-  
-            bestMatches{v} = dataBase{bestMatchIndices{v}};
+        dataBase(bestMatchIndices);
+        
+        for v=1:length(bestMatchIndices)
             
-        end
+            bestMatches = dataBase(bestMatchIndices(v));
+            
+        end 
 
 % -------------------- Decide on structure --------------------
         
-        bestMatchesGray = [];
+        bestMatchesGray = zeros(50,1);
         
         for u = 1:length(bestMatches) 
             
-            bestMatchesGray{u} = rgb2gray(bestMatches{u});
+            bestMatchesGray(u) = lab2rgb(bestMatches(u)); 
+            bestMatchesGray(u) = im2gray(bestMatchesGray(u));
             
         end 
         
-        finalReplacement = imread("Test_Images/Skriet.jpg"); % Placeholder img 
-        currentMatchDistance = -1; % Worse result SSIM can generate
+        finalReplacement = inf; 
         
-        queryRegionGray = im2gray(QueyImageRGB(replaceRegionRows, replaceRegionCols));
-        queryRegionGray = im2double(queryRegionGray);
-
+        queryImage = lab2rgb(queryImageLab); 
+        queryImageGray = im2gray(queryImage);
+        
+        currentMatchDistance = inf; 
+        
         for k = 1:length(bestMatchesGray) 
             
-            currentMatch = im2double(bestMatchesGray{k}); 
-            currentMatchRGB = im2double(bestMatches{k}); 
-            ssimval = ssim(currentMatch, queryRegionGray);
-
-            if currentMatchDistance < ssimval
-                finalReplacement = currentMatchRGB;
-                currentMatchDistance = ssimval;
+            ssimval = ssim(bestMatches(k),queryImageGray(replaceRegionRows,replaceRegionCols)); 
+            
+           
+            if currentMatchDistance > ssimval
+                
+                  finalReplacement = bestMatches(k); 
+                
             end 
         end 
-
-        finalReplacementLAB = rgb2lab(finalReplacement);
-        
-        finalReplacementL = finalReplacementLAB(:,:,1); 
-        finalReplacementA = finalReplacementLAB(:,:,2); 
-        finalReplacementB = finalReplacementLAB(:,:,3); 
          
-        Pixel_Image = imresize(finalReplacementL, [numel(replaceRegionRows), numel(replaceRegionCols)]);
+        % Resize image based on region size and place the small image by LAB channels 
+        Pixel_Image = imresize(bestMatches(k).L, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 1) = Pixel_Image;
         
-        Pixel_Image = imresize(finalReplacementA, [numel(replaceRegionRows), numel(replaceRegionCols)]);
+        Pixel_Image = imresize(bestMatches(k).A, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 2) = Pixel_Image;
         
-        Pixel_Image = imresize(finalReplacementB, [numel(replaceRegionRows), numel(replaceRegionCols)]);
+        Pixel_Image = imresize(bestMatches(k).B, [numel(replaceRegionRows), numel(replaceRegionCols)]);
         queryImageLab(replaceRegionRows, replaceRegionCols, 3) = Pixel_Image;
-        
+
+
     end
 end
 

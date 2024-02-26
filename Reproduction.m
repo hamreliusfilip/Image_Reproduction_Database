@@ -2,7 +2,7 @@ function [rgbImage] = Reproduction(queryImageLab)
 
 load colorBase.mat colorBase
 
-disp('Calculating reproduction image...');
+disp('Calculating reproduction image on colorspace...');
 
 sizeDatabase = numel(colorBase); 
 
@@ -17,7 +17,7 @@ end
 
 queryImageLab = im2double(queryImageLab);
 
-gridSize = 25; 
+gridSize = 25; % GRID SIZE
 numRows = size(queryImageLab, 1) / gridSize;
 numCols = size(queryImageLab, 2) / gridSize;
 
