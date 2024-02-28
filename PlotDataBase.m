@@ -1,5 +1,7 @@
 function [] = PlotDataBase()
 
+%----------------------------- PLOT IMAGES ---------------------------------
+
 load colorBase.mat colorBase
 
 numImages = numel(colorBase);
@@ -18,8 +20,6 @@ for i = 1:numImages
     imshow(rgbImage);
     title(['Image ' num2str(i)]);
 end
-
-
 
 end
 

@@ -4,7 +4,7 @@ if Turn_On == true
     
         disp('Optimizing database: option two'); 
     
-        % Most dominating RGB value
+        %-------------------------- DISP DOMINATING RGB ----------------------------
         colors = 'RGB';
         I = QueryImage;
         [~,idx] = max(sum(sum(I,1),2),[],3);
@@ -17,13 +17,14 @@ if Turn_On == true
         else 
             fprintf('Dominant color: %s - Optimizing database accordingly\n', 'Blue');
         end 
+        
+        %----------------------------- INDEXED RGB ---------------------------------
 
-        % Indexed RGB 
         [IND, map] = rgb2ind(QueryImage, 6);
         RGB = ind2rgb(IND, map);
         LAB = rgb2lab(RGB);
 
-        % Plot all the information
+        %----------------------------- PLOT COLORS ---------------------------------
         figure;
 
         subplot(1, 3, 1);
@@ -73,6 +74,8 @@ if Turn_On == true
         subplot(1, 6, 6);
         color_square(:, :, :) = ind2rgb(6, map); 
         imshow(color_square);
+        
+        %----------------------------- OPTIMIZATION ---------------------------------
 
         % Modify the database according to the dominat colors in CIELAB
 
@@ -169,6 +172,8 @@ if Turn_On == true
             end 
 
         end 
+        
+        %-------------------------- REMOVE PLACEHOLDERS -----------------------------
 
         numImages = numel(colorBaseNew);
         imagesToRemove = [];

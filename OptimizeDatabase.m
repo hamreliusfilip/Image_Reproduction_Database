@@ -6,6 +6,7 @@ if(TurnOnOpt == true)
     disp('Optimizing database: option one'); 
 end 
 
+%------------------------- PLACEHOLDER DATA -----------------------------
 
 counter = 1; 
 colorBase = cell(amountOfImages, 1);
@@ -15,6 +16,8 @@ for i = 1:amountOfImages
                           'A', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)), ...
                           'B', zeros(size(dataBase{1}, 1), size(dataBase{1}, 2)));
 end
+
+%----------------------------- OPTIMIZATION ---------------------------------
 
 % Add the images that differentiate enough from other images in the database
 for i = 1:amountOfImages
@@ -57,6 +60,8 @@ for i = 1:amountOfImages
          colorBase{i} = struct('L', L, 'A', A, 'B', B);
     end 
 end 
+
+%------------------------- REMOVE PLACEHOLDERS ----------------------------
 
 % Remove placeholders that were not occupied 
 % (In case the treshold were tighter than allowed images.) 

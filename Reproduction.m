@@ -6,6 +6,8 @@ disp('Calculating reproduction image on colorspace...');
 
 sizeDatabase = numel(colorBase); 
 
+% ----------------- Colors in LAB for all the regions ------------------
+
 targetColors = zeros(200, 3);
 
 % Target colors in all the regions
@@ -17,7 +19,9 @@ end
 
 queryImageLab = im2double(queryImageLab);
 
-gridSize = 25; % GRID SIZE
+% -------------- Find the images matching best for colors --------------
+
+gridSize = 25; % Grid size
 numRows = size(queryImageLab, 1) / gridSize;
 numCols = size(queryImageLab, 2) / gridSize;
 
@@ -51,6 +55,8 @@ for i = 1:numRows
                 currentDiff = distance;
             end   
         end
+        
+        % ------------------------- Place the image -----------------------------
 
         % Resize image based on region size and place the small image by LAB channels 
         Pixel_Image = imresize(colorBase{bestMatchIndex}.L, [numel(replaceRegionRows), numel(replaceRegionCols)]);
@@ -66,7 +72,7 @@ for i = 1:numRows
     end
 end
 
-rgbImage = lab2rgb(queryImageLab); 
+rgbImage = lab2rgb(queryImageLab); % Convert back to display
 
 end
 

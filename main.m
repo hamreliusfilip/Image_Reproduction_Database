@@ -2,7 +2,6 @@
 % ------------------------- QUERY IMAGE ----------------------------
 
 queryImageRGB = imread("Test_Images/Skriet.jpg");
-%queryImageRGB = imread("Database_logos/39.jpg");
 
 numRows = size(queryImageRGB, 1);
 numCols = size(queryImageRGB, 2);
@@ -39,7 +38,8 @@ OptimizeDatabase_OnQueryImage(queryImageRGB,TurnOnOptimization_Two);
     imgFinalColor = Reproduction(queryImageLAB);
 
 % Reproduction on structure with SSIM and color in CIELAB 
-    %imgFinalStructure = ReproductionOnStructure(queryImageLAB,queryImageRGB); 
+    % Uncomment to turn on structural similairty
+    % imgFinalStructure = ReproductionOnStructure(queryImageLAB,queryImageRGB); 
 
 % ---------------------------- PLOTTING -----------------------------
 
@@ -60,10 +60,10 @@ title('Reproduction Image on colorspace');
 % ----------------------- QUALITY & DATABASE ------------------------
 
 % Uncomment if you want to see quality measures: SNR, MSE, S-CIELAB
-    Quality_Measures(queryImageRGB,imgFinalColor); 
+    % Quality_Measures(queryImageRGB,imgFinalColor); 
 
 % Uncomment if you want to see the database used for your image.
-    PlotDataBase(); 
+    % PlotDataBase(); 
 
 
 

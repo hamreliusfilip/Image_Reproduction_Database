@@ -1,5 +1,7 @@
 function [] = CreateDatabase()
 
+%----------------------------- CREATE ---------------------------------
+
 dataBase = cell(200, 1);
 
 for i = 1:200
@@ -8,6 +10,8 @@ for i = 1:200
 end
 
 save dataBase dataBase
+
+%----------------------------- RESIZE ---------------------------------
 
 numImages = numel(dataBase);
 
